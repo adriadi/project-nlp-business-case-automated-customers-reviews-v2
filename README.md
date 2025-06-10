@@ -164,3 +164,36 @@ We provide you with some ideas below. However, you are not limited to these opti
 3. **Deployment**: Deploy the models using your chosen framework.
 4. **Documentation**: Prepare the README, PDF report, and PPT presentation.
 5. **Final Delivery**: Submit all deliverables, including the deployed app and final output.
+
+
+
+
+### Comparison of T5 and BART Models
+
+**T5 (Text-to-Text Transfer Transformer):**
+- Generates concise summaries but sometimes omits nuanced details.
+- Summaries are more extractive and may sound less natural.
+- Handles short reviews well, but longer or complex reviews may lose context.
+- Tends to focus on key phrases but can be repetitive for similar inputs.
+- Faster inference for small models (e.g., `t5-small`).
+
+**BART (Bidirectional and Auto-Regressive Transformers):**
+- Produces more fluent, human-like summaries.
+- Better at capturing the main point, even in longer or complex reviews.
+- Summaries are often more abstractive and readable.
+- Handles negative reviews and complaint extraction with clearer language.
+- Larger models (e.g., `bart-large-cnn`) may require more resources but yield higher quality.
+
+**Summary Table:**
+
+| Aspect                | T5 Model                  | BART Model                  |
+|-----------------------|---------------------------|-----------------------------|
+| Summary Style         | Concise, extractive       | Fluent, abstractive         |
+| Detail Retention      | May omit nuances          | Captures more context       |
+| Language Naturalness  | Less natural              | More human-like             |
+| Handling Long Reviews | May lose context          | Handles well                |
+| Resource Usage        | Lower (small models)      | Higher (large models)       |
+| Complaint Extraction  | Clear, but less nuanced   | Clear and more readable     |
+
+**Conclusion:**  
+BART generally produces more natural and context-aware summaries, especially for longer or more complex reviews. T5 is efficient and effective for shorter texts or when computational resources are limited. For customer review summarization at scale, BART is preferred for quality, while T5 is suitable for speed and simplicity.
