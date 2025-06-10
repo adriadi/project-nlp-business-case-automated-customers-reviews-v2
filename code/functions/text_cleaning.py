@@ -1,3 +1,10 @@
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+stop_words = set(stopwords.words("english"))
+lemmatizer = WordNetLemmatizer()
+
 def preprocess_reviews(df, column="reviews.text"):
     df = df.dropna(subset=[column])
     df[column] = df[column].str.lower()
