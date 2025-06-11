@@ -6,7 +6,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import streamlit as st
 import pandas as pd
 from scripts.visualize_pca import visualize_pca
-from utils.text_cleaning import clean_text  # Your cleaning function
+from utils.text_cleaning import clean_text  # cleaning function
 
 def run_clustering_interface():
     """
