@@ -1,5 +1,5 @@
 import pandas as pd
-from functions.get_dataset import csv_file
+from scripts.get_dataset import csv_file
 import re
 
 df = pd.read_csv(csv_file)
