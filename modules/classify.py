@@ -15,6 +15,19 @@ def classify_text(text: str) -> str:
         return "No input"
 
     result = classifier(text)[0]
-    label = result["label"].capitalize()
+    label_map = {
+        "LABEL_0": "Negative 😡", # <-- emojis for fun, fun, fun
+        "LABEL_1": "Neutral 😐",
+        "LABEL_2": "Positive 😍"
+    }
+    label = label_map.get(result["label"], result["label"])
     score = round(result["score"] * 100, 1)
-    return f"{label} ({score}%)"
+
+    if score >= 80:
+        confidence = "Definitely"
+    elif score >= 60:
+        confidence = "Likely"
+    else:
+        confidence = "Possibly"
+
+    return f"{confidence} {label} ({score}%)"
