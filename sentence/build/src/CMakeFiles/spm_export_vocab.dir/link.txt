@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -Wall -fPIC  -arch arm64 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/spm_export_vocab.dir/spm_export_vocab_main.cc.o -o spm_export_vocab  libsentencepiece.a
