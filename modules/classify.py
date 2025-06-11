@@ -3,7 +3,7 @@ os.environ["TRANSFORMERS_NO_TF"] = "1"  # Still useful just in case
 
 from transformers import pipeline
 
-# Explicitly set framework='pt' to skip Keras/TensorFlow
+# ✅ Explicitly set framework='pt' to skip Keras/TensorFlow
 classifier = pipeline(
     "sentiment-analysis",
     model="cardiffnlp/twitter-roberta-base-sentiment",

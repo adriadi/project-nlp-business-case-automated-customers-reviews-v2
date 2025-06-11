@@ -1,33 +1,32 @@
-import os
-os.environ["TRANSFORMERS_NO_TF"] = "1"  # Still useful just in case
+# modules/cluster.py
 
-from transformers import pipeline
+import sys, os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-# ✅ Explicitly set framework='pt' to skip Keras/TensorFlow
-classifier = pipeline(
-    "sentiment-analysis",
-    model="cardiffnlp/twitter-roberta-base-sentiment",
-    framework="pt"
-)
+import streamlit as st
+import pandas as pd
+from scripts.visualize_pca import visualize_pca
+from utils.text_cleaning import clean_text  # cleaning function
 
-def classify_text(text: str) -> str:
-    if not text.strip():
-        return "No input"
+def run_clustering_interface():
+    """
+    Streamlit UI: Upload CSV → clean reviews → run PCA visualization.
+    """
+    st.subheader("🔍 Cluster Reviews with PCA")
+    uploaded_file = st.file_uploader("Upload a CSV file with 'review' and 'reviews.rating' columns", type=["csv"])
 
-    result = classifier(text)[0]
-    label_map = {
-        "LABEL_0": "Negative 😡", # <-- emojis for fun, fun, fun
-        "LABEL_1": "Neutral 😐",
-        "LABEL_2": "Positive 😍"
-    }
-    label = label_map.get(result["label"], result["label"])
-    score = round(result["score"] * 100, 1)
+    if uploaded_file is not None:
+        df = pd.read_csv(uploaded_file)
 
-    if score >= 80:
-        confidence = "Definitely"
-    elif score >= 60:
-        confidence = "Likely"
-    else:
-        confidence = "Possibly"
+        if "review" not in df.columns or "reviews.rating" not in df.columns:
+            st.error("❌ CSV must contain 'review' and 'reviews.rating' columns.")
+            return
 
-    return f"{confidence} {label} ({score}%)"
+        # Clean the review texts
+        df["cleaned_text"] = df["review"].astype(str).apply(clean_text)
+
+        st.success("✅ Reviews loaded and cleaned!")
+
+        # This will display the chart using your existing function
+        visualize_pca(df)
+        st.pyplot()  # Streamlit captures the current figure
