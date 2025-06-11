@@ -19,7 +19,10 @@ def predict_sentiment(texts, model, tokenizer, device="cpu", batch_size=16):
         for i in range(0, len(texts), batch_size):
             batch_texts = texts[i : i + batch_size]
             inputs = tokenizer(
-                [f"Classify the review as Positive, Negative, or Neutral: {t}" for t in batch_texts]
+                [
+                    f"Classify the review as Positive, Negative, or Neutral: {t}"
+                    for t in batch_texts
+                ],
                 return_tensors="pt",
                 padding=True,
                 truncation=True,

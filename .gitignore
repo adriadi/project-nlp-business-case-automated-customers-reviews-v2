@@ -3,6 +3,5 @@ DS_Store
 venv
 dataset
 code/.ipynb_checkpoints
-sentencepiece
 __pycache__
 README.local.md
