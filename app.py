@@ -1,32 +1,28 @@
 import streamlit as st
-from map_sentiments import predict_sentiment
-from t5_model import summarize_with_t5
-from visualize_pca import run_clustering  
-
 from modules.classify import classify_text
 from modules.summarize import summarize_text
 from modules.cluster import run_clustering_interface
 
+st.set_page_config(page_title="NLP Review App", layout="wide")
+st.title("📊 NLP Review Insights")
 
-st.title("📊 Review Insight Dashboard")
-
-tab1, tab2, tab3 = st.tabs(["💬 Classify Review", "📚 Summarize Text", "🔍 Clustering"])
+tab1, tab2, tab3 = st.tabs(["💬 Classify Review", "📚 Summarize", "🔍 Clustering"])
 
 with tab1:
-    st.header("Review Classification")
-    user_input = st.text_area("Enter a review:")
+    st.header("Classify a Review")
+    text_input = st.text_area("Enter your review text:")
     if st.button("Classify"):
-        sentiment = predict_sentiment([user_input])[0]
-        st.write(f"**Sentiment:** {sentiment}")
+        result = classify_text(text_input)
+        st.success(f"Sentiment: {result}")
 
 with tab2:
-    st.header("Summarize Product Reviews")
-    user_input = st.text_area("Paste text to summarize:")
+    st.header("Summarize Review Text")
+    summary_input = st.text_area("Paste long text to summarize:")
+    model = st.radio("Choose a summarization model", ["t5", "bart"])
     if st.button("Summarize"):
-        summary = summarize_with_t5(user_input)
-        st.write(f"**Summary:** {summary}")
+        summary = summarize_text(summary_input, model)
+        st.success(summary)
 
 with tab3:
-    st.header("Upload Review CSV for Clustering")
-    run_clustering()
-
+    st.header("Visualize Clusters")
+    run_clustering_interface()

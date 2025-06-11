@@ -9,3 +9,4 @@ sentencepiece
 kagglehub
 ipython
 jupyter
+streamlit
