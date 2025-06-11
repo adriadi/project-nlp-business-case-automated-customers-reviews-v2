@@ -1,9 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"/Users/juliensebag/Documents/Ironhack AI/week-6/project-nlp-business-case-automated-customers-reviews-v2/sentencepiece/build/cmake_install.cmake",
-		"/Users/juliensebag/Documents/Ironhack AI/week-6/project-nlp-business-case-automated-customers-reviews-v2/sentencepiece/build/src/cmake_install.cmake",
-		"/Users/juliensebag/Documents/Ironhack AI/week-6/project-nlp-business-case-automated-customers-reviews-v2/sentencepiece/build/third_party/cmake_install.cmake"
-	],
-	"Parallel" : false
-}
