@@ -20,3 +20,4 @@ def preprocess_reviews(df, column="reviews.text"):
 
     df[column] = df[column].apply(clean_text)
     return df
+ 
