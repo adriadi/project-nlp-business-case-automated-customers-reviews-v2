@@ -26,3 +26,4 @@ def unique_product_names(data):
     unique_product_names = data["name"].nunique()
     sample_product_names = data["name"].sample(5, random_state=42)
     return unique_product_names, sample_product_names
+ 

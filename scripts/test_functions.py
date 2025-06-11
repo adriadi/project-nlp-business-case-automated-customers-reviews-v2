@@ -2,8 +2,10 @@
 from importlib import reload
 import pandas as pd
 import nltk
-
-
+import sys
+import os
+# Add parent directory to Python path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 # Get the CSV path from the dataset folder (where kagglehub put it)
 csv_file = "./code/dataset/Datafiniti_Amazon_Consumer_Reviews_of_Amazon_Products_May19.csv"
@@ -11,29 +13,21 @@ csv_file = "./code/dataset/Datafiniti_Amazon_Consumer_Reviews_of_Amazon_Products
 def load_data():
     return pd.read_csv(csv_file)
 
-
 # Reload modules to make sure the latest code is used
-import functions.data_process
-import functions.metadata
-import functions.text_cleaning
-# import functions.validate_clustering     <-- available for future use
-# import functions.visualize_pca
-# import functions.visualize_tsne
+import utils.data_process
+import utils.metadata
+import utils.text_cleaning
 
-reload(functions.data_process)
-reload(functions.metadata)
-reload(functions.text_cleaning)
-# reload(functions.validate_clustering)
-# reload(functions.visualize_pca)
-# reload(functions.visualize_tsne)
+# Reload modules
+reload(utils.data_process)
+reload(utils.metadata)
+reload(utils.text_cleaning)
 
-# Import functions
-from functions.data_process import tokenize, clean_text, filter_data, remove_empty, remove_duplicates
-from functions.text_cleaning import preprocess_reviews
-from functions.metadata import unique_brands, unique_categories, unique_primary_categories, unique_manufacturers, unique_product_names
-# from functions.validate_clustering import validate_clustering
-# from functions.visualize_pca import visualize_pca   
-# from functions.visualize_tsne import visualize_tsne
+# Import 
+from utils.data_process import tokenize, clean_text, filter_data, remove_empty, remove_duplicates
+from utils.text_cleaning import preprocess_reviews
+from utils.metadata import unique_brands, unique_categories, unique_primary_categories, unique_manufacturers, unique_product_names
+
 
 if 'df' in locals():
     print("\nChecking 'reviews.text' column...")
