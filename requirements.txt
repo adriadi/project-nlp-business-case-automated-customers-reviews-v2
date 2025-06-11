@@ -5,7 +5,7 @@ matplotlib
 seaborn
 transformers
 torch
-sentencepiece==0.1.99
+sentencepiece==0.1.96
 kagglehub
 ipython
 jupyter
