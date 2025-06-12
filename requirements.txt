@@ -9,3 +9,4 @@ kagglehub
 ipython
 jupyter
 streamlit
+nltk
