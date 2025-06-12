@@ -2,8 +2,8 @@ import streamlit as st
 from modules.classify import classify_text
 from modules.summarize import summarize_text
 from modules.cluster import run_clustering_interface
-
 st.set_page_config(page_title="NLP Review App", layout="wide")
+
 st.title("📊 NLP Review Insights")
 
 tab1, tab2, tab3 = st.tabs(["💬 Classify Review", "📚 Summarize", "🔍 Clustering"])
@@ -17,8 +17,8 @@ with tab1:
 
 with tab2:
     st.header("Summarize Review Text")
-    summary_input = st.text_area("Paste long text to summarize:")
-    model = st.radio("Choose a summarization model", ["t5", "bart"])
+    summary_input = st.text_area("Paste text to summarize:")
+    model = st.radio("Choose a summarization model", ["Get a super short summary (*t5*)", "Summarise long text (*bart*)"])
     if st.button("Summarize"):
         summary = summarize_text(summary_input, model)
         st.success(summary)
