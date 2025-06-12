@@ -2,8 +2,8 @@ import streamlit as st
 from modules.classify import classify_text
 from modules.summarize import summarize_text
 from modules.cluster import run_clustering_interface
-
 st.set_page_config(page_title="NLP Review App", layout="wide")
+
 st.title("📊 NLP Review Insights")
 
 tab1, tab2, tab3 = st.tabs(["💬 Classify Review", "📚 Summarize", "🔍 Clustering"])

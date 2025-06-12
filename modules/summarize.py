@@ -5,7 +5,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from scripts.t5_model import summarize_with_t5
 from scripts.bart_model import summarize_with_bart
 
-def summarize_text(text: str, model_type: str = "t5") -> str:
+def summarize_text(text: str, model_type: str = "t5-small") -> str:
     """
     Summarizes input text using either T5 or BART.
     """

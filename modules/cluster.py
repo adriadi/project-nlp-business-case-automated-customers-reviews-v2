@@ -10,23 +10,23 @@ from utils.text_cleaning import clean_text  # cleaning function
 
 def run_clustering_interface():
     """
-    Streamlit UI: Upload CSV → clean reviews → run PCA visualization.
+    Streamlit UI: Upload CSV → clean reviews → run PCA visualization. 
     """
     st.subheader("🔍 Cluster Reviews with PCA")
-    uploaded_file = st.file_uploader("Upload a CSV file with 'reviews.id' and 'reviews.rating' columns", type=["csv"])
+    uploaded_file = st.file_uploader("Upload a CSV file with 'reviews.text' and 'reviews.rating' columns", type=["csv"])
 
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
 
-        if "reviews.id" not in df.columns or "reviews.rating" not in df.columns:
-            st.error("❌ CSV must contain 'reviews.id' and 'reviews.rating' columns.")
+        if "reviews.text" not in df.columns or "reviews.rating" not in df.columns:
+            st.error("❌ CSV must contain 'reviews.text' and 'reviews.rating' columns.")
             return
 
         # Clean the review texts
-        df["cleaned_text"] = df["reviews.id"].astype(str).apply(clean_text)
+        df["cleaned_text"] = df["reviews.text"].astype(str).apply(clean_text)
 
         st.success("✅ Reviews loaded and cleaned!")
 
         # This will display the chart using your existing function
-        visualize_pca(df)
-        st.pyplot()  # Streamlit captures the current figure
+        fig = visualize_pca(df)
+        st.pyplot(fig)  # Streamlit captures the current figure
