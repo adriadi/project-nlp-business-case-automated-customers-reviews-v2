@@ -18,6 +18,12 @@ This AI-powered tool classifies review sentiments, groups similar opinions, and 
 
 ---
 
+## Presentation
+
+[Find the presentation here.](https://docs.google.com/presentation/d/1_Wk2V2OrqbPNxMUI6sO4ucQ6G6LpNaI9QiYXthlzkTQ/edit?usp=sharing)
+
+---
+
 ## ✨ Features
 
 - 🧼 **Data Preprocessing**  
