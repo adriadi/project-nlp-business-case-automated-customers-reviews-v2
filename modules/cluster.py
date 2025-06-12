@@ -13,17 +13,17 @@ def run_clustering_interface():
     Streamlit UI: Upload CSV → clean reviews → run PCA visualization.
     """
     st.subheader("🔍 Cluster Reviews with PCA")
-    uploaded_file = st.file_uploader("Upload a CSV file with 'review' and 'reviews.rating' columns", type=["csv"])
+    uploaded_file = st.file_uploader("Upload a CSV file with 'reviews.id' and 'reviews.rating' columns", type=["csv"])
 
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
 
-        if "review" not in df.columns or "reviews.rating" not in df.columns:
-            st.error("❌ CSV must contain 'review' and 'reviews.rating' columns.")
+        if "reviews.id" not in df.columns or "reviews.rating" not in df.columns:
+            st.error("❌ CSV must contain 'reviews.id' and 'reviews.rating' columns.")
             return
 
         # Clean the review texts
-        df["cleaned_text"] = df["review"].astype(str).apply(clean_text)
+        df["cleaned_text"] = df["reviews.id"].astype(str).apply(clean_text)
 
         st.success("✅ Reviews loaded and cleaned!")
 
