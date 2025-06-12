@@ -1,0 +1,8 @@
+DS_Store
+.env
+venv
+dataset
+code/.ipynb_checkpoints
+__pycache__
+README.local.md
+sample_reviews.csv
