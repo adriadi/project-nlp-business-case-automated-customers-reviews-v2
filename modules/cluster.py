@@ -1,25 +1,29 @@
 # modules/cluster.py
 
 import sys, os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import streamlit as st
 import pandas as pd
 from scripts.visualize_pca import visualize_pca
 from utils.text_cleaning import clean_text  # cleaning function
 
+
 def run_clustering_interface():
     """
     Streamlit UI: Upload CSV → clean reviews → run PCA visualization.
     """
     st.subheader("🔍 Cluster Reviews with PCA")
-    uploaded_file = st.file_uploader("Upload a CSV file with 'reviews.id' and 'reviews.rating' columns", type=["csv"])
+    uploaded_file = st.file_uploader(
+        "Upload a CSV file with 'reviews.id' and 'reviews.rating' columns", type=["csv"]
+    )
 
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
 
         if "reviews.id" not in df.columns or "reviews.rating" not in df.columns:
-            st.error("❌ CSV must contain 'reviews.id' and 'reviews.rating' columns.")
+            st.error("❌ CSV must contain 'review.id' and 'reviews.rating' columns.")
             return
 
         # Clean the review texts
