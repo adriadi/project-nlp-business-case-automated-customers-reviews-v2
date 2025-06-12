@@ -1,17 +1,20 @@
 from importlib import reload
+import sys
+
+sys.path.append("..")
 
 # Reload modules to make sure the latest code is used
-import functions.get_dataset
-import functions.text_cleaning
-import functions.data_process  # optional
+import scripts.get_dataset
+import utils.text_cleaning
+import utils.data_process  # optional
 
-reload(functions.get_dataset)
-reload(functions.text_cleaning)
-reload(functions.data_process)
+reload(scripts.get_dataset)
+reload(utils.text_cleaning)
+reload(utils.data_process)
 
 # Import functions
-from functions.get_dataset import load_data
-from functions.text_cleaning import preprocess_reviews
+from scripts.get_dataset import load_data
+from utils.text_cleaning import preprocess_reviews
 
 # Check load_data
 print("\nChecking load_data...")
