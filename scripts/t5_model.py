@@ -170,3 +170,23 @@ def get_worst_products(data):
         .reset_index()
     )
     return worst_products
+
+# summarise functions for T5 model
+# Import necessary libraries
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+
+# Load the model only once (for Hugging Face Spaces, keep it simple)
+MODEL_NAME = "google/flan-t5-small"
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+model = AutoModelForSeq2SeqLM.from_pretrained(MODEL_NAME)
+
+def summarize_with_t5(text: str) -> str:
+    """
+    Uses a T5 model to generate a summary from input text.
+    """
+    prompt = build_summary_prompt(text)
+    inputs = tokenizer(prompt, return_tensors="pt", truncation=True)
+
+    outputs = model.generate(**inputs, max_length=100, num_beams=4, early_stopping=True)
+    summary = tokenizer.decode(outputs[0], skip_special_tokens=True)
+    return summary

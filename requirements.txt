@@ -10,3 +10,4 @@ ipython
 jupyter
 streamlit
 nltk
+sentencepiece

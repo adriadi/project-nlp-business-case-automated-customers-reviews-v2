@@ -17,8 +17,8 @@ with tab1:
 
 with tab2:
     st.header("Summarize Review Text")
-    summary_input = st.text_area("Paste long text to summarize:")
-    model = st.radio("Choose a summarization model", ["t5", "bart"])
+    summary_input = st.text_area("Paste text to summarize:")
+    model = st.radio("Choose a summarization model", ["Get a super short summary (*t5*)", "Summarise long text (*bart*)"])
     if st.button("Summarize"):
         summary = summarize_text(summary_input, model)
         st.success(summary)

@@ -219,3 +219,17 @@ def get_worst_products(data):
             print(
                 f"\nCategory: {row['primaryCategories']}\nProduct: {row['name']}\nBART summary of a negative review:\n{summary}"
             )
+
+# Summarize text using BART model
+from transformers import pipeline
+
+# Load a clean summarizer pipeline (separately from above logic)
+bart_summarizer = pipeline("summarization", model="sshleifer/distilbart-cnn-12-6", framework="pt")
+
+
+def summarize_with_bart(text: str) -> str:
+    """
+    Takes long review text and returns a short summary using DistilBART.
+    """
+    result = bart_summarizer(text, max_length=60, min_length=15, do_sample=False)
+    return result[0]["summary_text"]
