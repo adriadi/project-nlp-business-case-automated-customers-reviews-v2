@@ -5,4 +5,4 @@ def classify_sentiment(text):
         outputs = model(**inputs)
         probs = torch.nn.functional.softmax(outputs.logits, dim=1)
         predicted_class = torch.argmax(probs).item()
-    return labels[predicted_class]
+    return labels[predicted_class] 
